@@ -7,7 +7,7 @@ import pickle
 st.title("Passenger survival chance in the titanic journey")
 pclass=st.slider('Enter the passenger class',1,3)
 sex=st.selectbox('Enter the passenger gender', ['male','female'])
-sibsp=st.slider('Enter passengers total no of  siblings and spouse',1,8)
+sibsp=st.slider('Enter passengers total no of  siblings and spouse',0,8)
 parch=st.slider('Enter passengers total no of parents and child',0,6)
 fare=st.number_input('Enter the fare of passenger')
 embarked=st.selectbox("enter the passenger station from where they started their journey",['Southampton','Chebourg','Queenstown'])
@@ -50,12 +50,8 @@ def chance(y):
     else:
         return 'The passenger wont surive the journey'
 if st.button('Predcit survial chance'):
-    st.write('Probability of passenher survival chance:',y)
-    st.write(data)
-    st.write(data.isna().sum())
+    st.write('Probability of passenger survival chance:',y)
     st.write(chance(y))
 
-print(embarked)
-print(type(embarked))
-print(embarked.shape)
+
 
