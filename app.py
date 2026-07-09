@@ -29,8 +29,13 @@ data['Sex']=label.transform(data['Sex'])
 
 embarked=onehot.transform(data[['Embarked']])
 
-embarked=pd.DataFrame(columns=onehot.get_feature_names_out())
 
+
+embarked = pd.DataFrame(
+    embarked,
+    columns=onehot.get_feature_names_out(),
+    index=data.index
+)
 data=pd.concat([data.drop(columns='Embarked'),embarked],axis=1)
 
 data[['Pclass','SibSp','Parch','Fare']]=scaler.transform(data[['Pclass','SibSp','Parch','Fare']])
@@ -46,4 +51,11 @@ def chance(y):
         return 'The passenger wont surive the journey'
 if st.button('Predcit survial chance'):
     st.write('Probability of passenher survival chance:',y)
+    st.write(data)
+    st.write(data.isna().sum())
     st.write(chance(y))
+
+print(embarked)
+print(type(embarked))
+print(embarked.shape)
+
